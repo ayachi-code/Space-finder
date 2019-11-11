@@ -9,7 +9,6 @@ class Apod extends React.Component {
         this.state = {
             apod_image: ""
         }
-
         this.img = {
             width: "250px"
         }
@@ -29,7 +28,7 @@ class Apod extends React.Component {
     render() {
         return(
             <div>
-                <table onLoad={this.apod()}>
+                <table className="fixed-bottom" onLoad={this.apod()}>
                     <thead className="border border-white">
                     <tr className="text-primary">
                         <th>Astronomy Picture of the Day</th>
