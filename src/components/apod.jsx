@@ -1,7 +1,6 @@
 import React from 'react';
 // eslint-disable-next-line
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css'
-import styles from './styles.css'
 
 class Apod extends React.Component {
 
@@ -9,6 +8,10 @@ class Apod extends React.Component {
         super(props)
         this.state = {
             apod_image: ""
+        }
+
+        this.img = {
+            width: "250px"
         }
         this.apod = this.apod.bind(this);
     }
@@ -34,7 +37,7 @@ class Apod extends React.Component {
                     </thead>
                     <tbody className="border border-white">
                     <tr className="text-primary">
-                        <th><img className="img-fluid" src={localStorage.getItem("apod")}/></th>
+                        <th><img className="img-fluid" style={this.img} src={localStorage.getItem("apod")}/></th>
                     </tr>
                     </tbody>
                 </table>
