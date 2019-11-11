@@ -11,8 +11,10 @@ class Apod extends React.Component {
 
     apod() {
         fetch("https://api.nasa.gov/planetary/apod?api_key=nbw6CmJP3hcYinsbrg60vfpTU1us0UR3mB67ayP6")
-        .then((data) => {
-            console.log(data)
+        .then((res) => {
+            res.json().then((data) => {
+                console.log("Hey")
+            })
         })
     }
 
@@ -27,7 +29,7 @@ class Apod extends React.Component {
                     </thead>
                     <tbody className="border border-white">
                     <tr className="text-primary">
-                        <th>Hallo, {this.apod()}</th>
+                        <th>{this.apod()}</th>
                     </tr>
                     </tbody>
                 </table>
