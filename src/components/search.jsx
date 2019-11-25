@@ -10,11 +10,19 @@ class Search extends React.Component {
             position: "absolute",
             top: "50%"
         }
+        this.enteredinput = this.enteredinput.bind(this);
     }
+
+    enteredinput(e) {
+        if(e.key === 'Enter') {
+            console.log("klikt op enter")
+        }
+    }
+
     render() {
         return(
             <div className="w-100 text-center"  style={this.input}>
-                <input className="rounded-pill text-center " type="input" placeholder="Type een planeet"/>
+                <input className="rounded-pill text-center " type="input" placeholder="Type een planeet" onKeyDown={this.enteredinput}/>
             </div>
         )
     }
