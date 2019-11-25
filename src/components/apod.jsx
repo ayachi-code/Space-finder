@@ -36,7 +36,7 @@ class Apod extends React.Component {
                     </thead>
                     <tbody className="border border-white">
                     <tr className="text-primary">
-                        <th><img className="img-fluid" style={this.img} src={localStorage.getItem("apod")}/></th>
+                        <th><img className="img-fluid" alt="hey" style={this.img} src={localStorage.getItem("apod")}/></th>
                     </tr>
                     </tbody>
                 </table>

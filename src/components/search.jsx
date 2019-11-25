@@ -1,5 +1,4 @@
 import  React from 'react';
-import ReactDom from 'react-dom'
 
 
 class Search extends React.Component {
@@ -8,7 +7,7 @@ class Search extends React.Component {
         this.input = {
             margin: "0",
             position: "absolute",
-            top: "50%"
+            top: "50%",
         }
         this.enteredinput = this.enteredinput.bind(this);
         this.search_information = this.search_information.bind(this);
@@ -16,14 +15,17 @@ class Search extends React.Component {
 
     search_information() {
         //Zoekt informatie over de defbetreffende planeet
-        fetch("https://images-api.nasa.gov/search?q=earth")
+        fetch("https://images-api.nasa.gov/search?q=" + document.getElementById("planeet_input").value)
         .then((res) => {
             res.json().then((data) => {
                 //Loopt door de collection object voor de eerste 5 random images
                 console.clear()
                 for (let i = 0; i < 5; i++) {
-                    console.log(data["collection"]["items"][i]["links"][0])
+                    console.log(data["collection"]["items"][i]["links"][0]["href"])
                 }
+            }).catch((error) => {
+                console.log("Planeet bestaat niet")
+                document.getElementById('exist').innerHTML = "planeet bestaat niet !"
             })
         })
     }
@@ -37,7 +39,8 @@ class Search extends React.Component {
     render() {
         return(
             <div className="w-100 text-center"  style={this.input}>
-                <input className="rounded-pill text-center " type="input" placeholder="Type een planeet" onKeyDown={this.enteredinput}/>
+                <input className="rounded-pill text-center " type="input" id="planeet_input" placeholder="Type een planeet" onKeyDown={this.enteredinput}/>
+                <p className="text-primary" id="exist"></p>
             </div>
         )
     }
