@@ -19,11 +19,11 @@ class Search extends React.Component {
         fetch("https://images-api.nasa.gov/search?q=earth")
         .then((res) => {
             res.json().then((data) => {
-                //Loopt door de collection object voor de eerste 5 images
-                //for (let i = 0; i++;i <= 5) {
-                    //console.log(data["collection"]["items"][i])
-                  //  console.log("Hey")
-                //}
+                //Loopt door de collection object voor de eerste 5 random images
+                console.clear()
+                for (let i = 0; i < 5; i++) {
+                    console.log(data["collection"]["items"][i]["links"][0])
+                }
             })
         })
     }
