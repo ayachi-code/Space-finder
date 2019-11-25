@@ -11,11 +11,26 @@ class Search extends React.Component {
             top: "50%"
         }
         this.enteredinput = this.enteredinput.bind(this);
+        this.search_information = this.search_information.bind(this);
+    }
+
+    search_information() {
+        //Zoekt informatie over de defbetreffende planeet
+        fetch("https://images-api.nasa.gov/search?q=earth")
+        .then((res) => {
+            res.json().then((data) => {
+                //Loopt door de collection object voor de eerste 5 images
+                //for (let i = 0; i++;i <= 5) {
+                    //console.log(data["collection"]["items"][i])
+                  //  console.log("Hey")
+                //}
+            })
+        })
     }
 
     enteredinput(e) {
         if(e.key === 'Enter') {
-            console.log("klikt op enter")
+            this.search_information()
         }
     }
 
