@@ -18,14 +18,13 @@ class Search extends React.Component {
         fetch("https://images-api.nasa.gov/search?q=" + document.getElementById("planeet_input").value)
         .then((res) => {
             res.json().then((data) => {
-                //Loopt door de collection object voor de eerste 5 random images
-                console.clear()
+                //Loopt door de collection object voor de eerste 5 random images                console.clear()
                 for (let i = 0; i < 5; i++) {
                     console.log(data["collection"]["items"][i]["links"][0]["href"])
                 }
             }).catch((error) => {
                 console.log("Planeet bestaat niet")
-                document.getElementById('exist').innerHTML = "planeet bestaat niet !"
+                alert("Hey, planeet bestaat niet !!!!")
             })
         })
     }
@@ -40,7 +39,6 @@ class Search extends React.Component {
         return(
             <div className="w-100 text-center"  style={this.input}>
                 <input className="rounded-pill text-center " type="input" id="planeet_input" placeholder="Type een planeet" onKeyDown={this.enteredinput}/>
-                <p className="text-primary" id="exist"></p>
             </div>
         )
     }
