@@ -9,6 +9,9 @@ class Search extends React.Component {
             position: "absolute",
             top: "50%",
         }
+        this.state = {
+            bestaat_planeet: true
+        }
         this.enteredinput = this.enteredinput.bind(this);
         this.search_information = this.search_information.bind(this);
     }
@@ -22,9 +25,12 @@ class Search extends React.Component {
                 for (let i = 0; i < 5; i++) {
                     console.log(data["collection"]["items"][i]["links"][0]["href"])
                 }
+                document.getElementById('log').innerText = "Planeet bestaat"
             }).catch((error) => {
+                //Als planeet niet bestaat
                 console.log("Planeet bestaat niet")
-                alert("Hey, planeet bestaat niet !!!!")
+                //alert("Hey, planeet bestaat niet !!!!")
+                document.getElementById('log').innerText = "Planeet bestaat niet :("
             })
         })
     }
@@ -39,7 +45,8 @@ class Search extends React.Component {
         return(
             <div className="w-100 text-center"  style={this.input}>
                 <input className="rounded-pill text-center " type="input" id="planeet_input" placeholder="Type een planeet" onKeyDown={this.enteredinput}/>
-            </div>
+                         <p id="log" className="text-primary"></p>
+                    </div>
         )
     }
 }
