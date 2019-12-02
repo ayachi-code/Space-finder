@@ -1,5 +1,6 @@
 import  React from 'react';
-
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 class Search extends React.Component {
     constructor(props) {
@@ -37,6 +38,7 @@ class Search extends React.Component {
 
     enteredinput(e) {
         if(e.key === 'Enter') {
+            //Als enter word geklikt dan zoekt informatie over planeet
             this.search_information()
         }
     }
