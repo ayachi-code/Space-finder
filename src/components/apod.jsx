@@ -39,7 +39,7 @@ class Apod extends React.Component {
                 <table className="fixed-bottom" onLoad={this.apod()}>
                     <thead className="border border-white">
                     <tr className="text-primary">
-                        <th>Astronomy Picture of the Day</th>
+                        <th>Astronomy Picture of the Day </th>
                     </tr>
                     </thead>
                     <tbody className="border border-white">
