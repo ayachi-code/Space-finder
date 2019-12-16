@@ -7,10 +7,10 @@ class Search extends React.Component {
         this.input = {
             margin: "0",
             position: "absolute",
-            top: "50%",
+            top: "50%"
         }
         this.state = {
-            bestaat_planeet: true
+            bestaat_planeet: true,
         }
         this.enteredinput = this.enteredinput.bind(this);
         this.search_information = this.search_information.bind(this);
@@ -22,14 +22,16 @@ class Search extends React.Component {
         .then((res) => {
             res.json().then((data) => {
                 //Loopt door de collection object voor de eerste 5 random images                console.clear()
-                for (let i = 0; i < 5; i++) {
+                for (let i = 0; i < 4; i++) {
                     console.log(data["collection"]["items"][i]["links"][0]["href"])
+                    //document.getElementById("foto" + i).src = data["collection"]["items"][i]["links"][0]["href"];        
                 }
                 document.getElementById('log').innerText = "Planeet bestaat"
                 document.getElementById('planeet_naam').innerText = document.getElementById("planeet_input").value;
+                //Voegt foto bij Afbeelding bij display
             }).catch((error) => {
                 //Als planeet niet bestaat
-                console.log("Planeet bestaat niet")
+                console.log("Planeet bestaat niet ")
                 //alert("Hey, planeet bestaat niet !!!!")
                 document.getElementById('log').innerText = "Planeet bestaat niet :("
             })
@@ -52,5 +54,6 @@ class Search extends React.Component {
         )
     }
 }
+
 
 export default Search
