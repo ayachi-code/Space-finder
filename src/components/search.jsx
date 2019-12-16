@@ -26,6 +26,7 @@ class Search extends React.Component {
                     console.log(data["collection"]["items"][i]["links"][0]["href"])
                 }
                 document.getElementById('log').innerText = "Planeet bestaat"
+                document.getElementById('planeet_naam').innerText = document.getElementById("planeet_input").value;
             }).catch((error) => {
                 //Als planeet niet bestaat
                 console.log("Planeet bestaat niet")
