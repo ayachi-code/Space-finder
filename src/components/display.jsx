@@ -5,6 +5,8 @@ import Search from './search.jsx';
 import {Another} from './search.jsx'
 
 
+//Random planet functie
+
 class Display extends React.Component {
     constructor() {
         super()
@@ -21,13 +23,22 @@ class Display extends React.Component {
                 <div className="border border-white text-center">
                         <span id="planeet_naam"/>
                     </div>
-                <div className="border border-white">
-                            <div>
+                <div>
+                            <div className="border border-white">
                                 <div className="border border-white w-25 float-left"><img className="img-fluid" id="foto0" alt="FOTO" src="https://www.columbusearththeater.nl/sites/c-city/files/uploads/Earth.jpg"/></div>
                                 <div className="border border-white w-25 float-left"><img className="img-fluid" id="foto1" alt="FOTO" src="https://www.columbusearththeater.nl/sites/c-city/files/uploads/Earth.jpg"/></div>
                                 <div className="border border-white w-25 float-left"><img className="img-fluid" id="foto2" alt="FOTO" src="https://www.columbusearththeater.nl/sites/c-city/files/uploads/Earth.jpg"/></div>
                                 <div className="border border-white w-25 float-left"><img className="img-fluid" id="foto3" alt="FOTO" src="https://www.columbusearththeater.nl/sites/c-city/files/uploads/Earth.jpg"/></div>
                             </div>
+                    </div>
+                    <div className="float-right">
+                        <br/>
+                        <br/>
+                        <p>informatie</p>
+                        <p>informatie</p>
+                        <p>informatie</p>
+                        <p>informatie</p>
+
                     </div>
             </div>
         )
