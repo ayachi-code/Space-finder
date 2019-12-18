@@ -24,7 +24,7 @@ class Search extends React.Component {
                 //Loopt door de collection object voor de eerste 5 random images                console.clear()
                 for (let i = 0; i < 4; i++) {
                     console.log(data["collection"]["items"][i]["links"][0]["href"])
-                    //document.getElementById("foto" + i).src = data["collection"]["items"][i]["links"][0]["href"];        
+                    document.getElementById("foto" + i).src = data["collection"]["items"][i]["links"][0]["href"];
                 }
                 document.getElementById('log').innerText = "Planeet bestaat"
                 document.getElementById('planeet_naam').innerText = document.getElementById("planeet_input").value;
