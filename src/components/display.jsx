@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import Search from './search.jsx';
 import {Another} from './search.jsx'
-
+//import wiki from 'wikijs';
 
 //Random planet functie
 
@@ -34,7 +34,7 @@ class Display extends React.Component {
                     <div className="float-right">
                         <br/>
                         <br/>
-                        <p>informatie</p>
+                        <p onLoad={this.Search_info()}>informatie</p>
                         <p>informatie</p>
                         <p>informatie</p>
                         <p>informatie</p>
