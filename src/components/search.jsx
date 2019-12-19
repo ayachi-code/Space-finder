@@ -26,7 +26,7 @@ class Search extends React.Component {
                 for (let i = 0; i < 4; i++) {
                     //console.log(data["collection"]["items"][i]["links"][0]["href"])
                     document.getElementById("foto" + i).src = data["collection"]["items"][i]["links"][0]["href"];
-                }
+                }  
                 document.getElementById('log').innerText = "Planeet bestaat"
                 document.getElementById('planeet_naam').innerText = document.getElementById("planeet_input").value;
                 //Voegt foto bij Afbeelding bij display

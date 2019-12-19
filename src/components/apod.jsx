@@ -28,7 +28,6 @@ class Apod extends React.Component {
                    localStorage.setItem("apod",data.hdurl);
                }
                console.log(data.hdurl)
-               //localStorage.setItem("apod",data.hdurl);
             })
         })
     }

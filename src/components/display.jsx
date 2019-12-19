@@ -2,10 +2,7 @@ import React from 'react';
 // eslint-disable-next-line 
 import ReactDom from 'react-dom';
 import Search from './search.jsx';
-import {Another} from './search.jsx'
-//import wiki from 'wikijs';
-
-//Random planet functie
+import wiki from 'wikijs';
 
 class Display extends React.Component {
     constructor() {
@@ -17,6 +14,10 @@ class Display extends React.Component {
         }
     }
 
+    search_info() {
+        wiki().page('Batman')
+        .then(page => console.log(page.pageid));
+    }
     render() {
         return (
             <div className="float-right border border-white" style={this.display_info}>
@@ -34,7 +35,7 @@ class Display extends React.Component {
                     <div className="float-right">
                         <br/>
                         <br/>
-                        <p onLoad={this.Search_info()}>informatie</p>
+                        <p onLoad={this.search_info()}>informatie</p>
                         <p>informatie</p>
                         <p>informatie</p>
                         <p>informatie</p>
