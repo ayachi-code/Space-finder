@@ -49,7 +49,7 @@ class Search extends React.Component {
     render() {
         return(
             <div className="w-100 text-center"  style={this.input}>
-                <input className="rounded-pill text-center " type="input" id="planeet_input" placeholder="Type een planeet" onKeyDown={this.enteredinput}/>
+                <input className="rounded-pill text-center " type="input" id="planeet_input" placeholder="Explore space" onKeyDown={this.enteredinput}/>
                          <p id="log" className="text-primary"></p>
                     </div>
         )

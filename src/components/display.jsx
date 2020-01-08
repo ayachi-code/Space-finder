@@ -2,7 +2,7 @@ import React from 'react';
 // eslint-disable-next-line 
 import ReactDom from 'react-dom';
 import Search from './search.jsx';
-import wiki from 'wikijs';
+const wikiParser = require('wiki-infobox-parser');
 
 class Display extends React.Component {
     constructor() {
@@ -12,11 +12,6 @@ class Display extends React.Component {
             height: "500px",
             width: "300px"
         }
-    }
-
-    search_info() {
-        wiki().page('Batman')
-        .then(page => console.log(page.pageid));
     }
     render() {
         return (
