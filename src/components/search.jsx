@@ -14,29 +14,37 @@ class Search extends React.Component {
         }
         this.enteredinput = this.enteredinput.bind(this);
         this.search_information = this.search_information.bind(this);
+        this.get_planet_picture = this.get_planet_picture.bind(this);
     }
+
+    get_planet_picture(PlanetName) {
+        //Fetched na NASA API voor de fotos
+        fetch("https://images-api.nasa.gov/search?q=" + PlanetName)
+            .then(res => res.json())
+            .then((data) => {
+                for (let i = 0; i < 4; i++) {
+                    document.getElementById("foto" + i).src = data["collection"]["items"][i]["links"][0]["href"];
+                }  
+            })
+    }
+
 
     search_information() {
         //Zoekt informatie over de defbetreffende planeet
-        fetch("https://images-api.nasa.gov/search?q=" + document.getElementById("planeet_input").value)
-        .then((res) => {
-            res.json().then((data) => {
-                console.log(data)
-                //Loopt door de collection object voor de eerste 5 random images                console.clear()
-                for (let i = 0; i < 4; i++) {
-                    //console.log(data["collection"]["items"][i]["links"][0]["href"])
-                    document.getElementById("foto" + i).src = data["collection"]["items"][i]["links"][0]["href"];
-                }  
-                document.getElementById('log').innerText = "Planeet bestaat"
-                document.getElementById('planeet_naam').innerText = document.getElementById("planeet_input").value;
-                //Voegt foto bij Afbeelding bij display
-            }).catch((error) => {
-                //Als planeet niet bestaat
-                console.log("Planeet bestaat niet ")
-                //alert("Hey, planeet bestaat niet !!!!")
-                document.getElementById('log').innerText = "Planeet bestaat niet :("
-            })
-        })
+        fetch("https://api.le-systeme-solaire.net/rest/bodies/" + document.getElementById("planeet_input").value)
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.isPlanet) {
+                    console.log("Het is een planeet"); 
+                    let PlanetExist = this.get_planet_picture(data.englishName)
+                    console.clear();
+                    //if (PlanetExist) {
+                        //Laat de informatie zien van de planeet als de fotos succesvol zijn geplaatst
+                        //let PlanetInfoExist = get_planet_info(data.englishName)
+                    //}
+                }
+            }).catch(error => console.log("Het is geen planeet, zoeken voor andere opties... "))
+        
     }
 
     enteredinput(e) {

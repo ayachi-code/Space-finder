@@ -2,7 +2,7 @@ import React from 'react';
 // eslint-disable-next-line 
 import ReactDom from 'react-dom';
 import Search from './search.jsx';
-const wikiParser = require('wiki-infobox-parser');
+
 
 class Display extends React.Component {
     constructor() {
@@ -13,6 +13,14 @@ class Display extends React.Component {
             width: "300px"
         }
     }
+
+    hetisgoed() {
+        fetch("https://api.le-systeme-solaire.net/rest/bodies/earth")
+            .then((res) => res.json())
+            .then((data) => console.log(data))
+    }
+
+
     render() {
         return (
             <div className="float-right border border-white" style={this.display_info}>
@@ -30,7 +38,7 @@ class Display extends React.Component {
                     <div className="float-right">
                         <br/>
                         <br/>
-                        <p onLoad={this.search_info()}>informatie</p>
+                        <p onLoad={this.hetisgoed()}>informatie</p>
                         <p>informatie</p>
                         <p>informatie</p>
                         <p>informatie</p>
