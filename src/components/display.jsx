@@ -10,7 +10,7 @@ class Display extends React.Component {
         this.display_info = {
             color: "white",
             height: "500px",
-            width: "300px"
+            width: "350px"
         }
     }
     render() {
@@ -30,10 +30,12 @@ class Display extends React.Component {
                     <div className="float-right">
                         <br/>
                         <br/>
-                        <p>informatie</p>
-                        <p>informatie</p>
-                        <p>informatie</p>
-                        <p>informatie</p>
+                        <p id="gravity">informatie</p>
+                        <p id="density">informatie</p>
+                        <p id="mass">informatie</p>
+                        <p id="volume">informatie</p>
+                        <p id="sun_d">informatie</p>
+                        <p id="diameter">informatie</p>
 
                     </div>
             </div>

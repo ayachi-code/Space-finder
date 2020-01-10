@@ -9,9 +9,6 @@ class Search extends React.Component {
             position: "absolute",
             top: "50%"
         }
-        this.state = {
-            bestaat_planeet: true,
-        }
         this.enteredinput = this.enteredinput.bind(this);
         this.search_information = this.search_information.bind(this);
         this.get_planet_picture = this.get_planet_picture.bind(this);
@@ -30,10 +27,23 @@ class Search extends React.Component {
             }).catch((error) => console.error("Error er is iets fout gegaan" + error));
     }
 
-    get_planet_info() {
-        console.log("Gathering planet info")
-
+    get_planet_info(PlanetName) {
+        document.getElementById("planeet_naam").innerText = PlanetName;
+        console.log("Gathering planet")
+        fetch("https://api.le-systeme-solaire.net/rest/bodies/" + PlanetName)
+            .then((res) => res.json())
+            .then((data) => {
+               //Laat data verschijnen op pagina van de desbetreffende planeet
+               document.getElementById("gravity").innerText = "acceleration: " + data.gravity + " m/s2";
+               document.getElementById("density").innerText = "Density: " + data.density + "g/cm3";
+               document.getElementById("mass").innerText = "Mass: " + data.mass.massValue + "*10^ " + data.mass.massExponent +" kg"
+               document.getElementById("volume").innerText = "Volume: " + data.vol.volValue + "*10^ " + data.vol.volExponent + " km3";
+               document.getElementById("sun_d").innerText = "distance between the sun: " + data.semimajorAxis + " km";
+               document.getElementById("diameter").innerText = "Diameter: " + Math.floor(data.meanRadius) + " km";
+               console.log(data)
+            })
     }
+
 
     search_information() {
         //Zoekt informatie over de defbetreffende planeet
@@ -44,12 +54,12 @@ class Search extends React.Component {
                     console.log("Het is een planeet"); 
                     this.get_planet_picture(data.englishName)
                     console.clear();
-                    get_planet_info(data.englishName)
+                    this.get_planet_info(data.englishName)
                     }
                 }
-            }).catch(error => console.log("Het is geen planeet, zoeken voor andere opties... "))
+            ).catch(error => console.log("Het is geen planeet, zoeken voor andere opties... "))
         
-    }
+        }
 
     enteredinput(e) {
         if(e.key === 'Enter') {
