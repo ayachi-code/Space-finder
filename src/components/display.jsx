@@ -13,14 +13,6 @@ class Display extends React.Component {
             width: "300px"
         }
     }
-
-    hetisgoed() {
-        fetch("https://api.le-systeme-solaire.net/rest/bodies/earth")
-            .then((res) => res.json())
-            .then((data) => console.log(data))
-    }
-
-
     render() {
         return (
             <div className="float-right border border-white" style={this.display_info}>
@@ -38,7 +30,7 @@ class Display extends React.Component {
                     <div className="float-right">
                         <br/>
                         <br/>
-                        <p onLoad={this.hetisgoed()}>informatie</p>
+                        <p>informatie</p>
                         <p>informatie</p>
                         <p>informatie</p>
                         <p>informatie</p>

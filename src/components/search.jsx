@@ -15,6 +15,7 @@ class Search extends React.Component {
         this.enteredinput = this.enteredinput.bind(this);
         this.search_information = this.search_information.bind(this);
         this.get_planet_picture = this.get_planet_picture.bind(this);
+        this.get_planet_info = this.get_planet_info.bind(this);
     }
 
     get_planet_picture(PlanetName) {
@@ -22,12 +23,17 @@ class Search extends React.Component {
         fetch("https://images-api.nasa.gov/search?q=" + PlanetName)
             .then(res => res.json())
             .then((data) => {
-                for (let i = 0; i < 4; i++) {
-                    document.getElementById("foto" + i).src = data["collection"]["items"][i]["links"][0]["href"];
-                }  
-            })
+                    for (let i = 0; i < 4; i++) {
+                        //Pakt 4 fotos van NASA API en plakt bij de placeholder
+                        document.getElementById("foto" + i).src = data["collection"]["items"][i]["links"][0]["href"];
+                    }
+            }).catch((error) => console.error("Error er is iets fout gegaan" + error));
     }
 
+    get_planet_info() {
+        console.log("Gathering planet info")
+
+    }
 
     search_information() {
         //Zoekt informatie over de defbetreffende planeet
@@ -36,12 +42,10 @@ class Search extends React.Component {
             .then((data) => {
                 if (data.isPlanet) {
                     console.log("Het is een planeet"); 
-                    let PlanetExist = this.get_planet_picture(data.englishName)
+                    this.get_planet_picture(data.englishName)
                     console.clear();
-                    //if (PlanetExist) {
-                        //Laat de informatie zien van de planeet als de fotos succesvol zijn geplaatst
-                        //let PlanetInfoExist = get_planet_info(data.englishName)
-                    //}
+                    get_planet_info(data.englishName)
+                    }
                 }
             }).catch(error => console.log("Het is geen planeet, zoeken voor andere opties... "))
         
