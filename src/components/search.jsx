@@ -13,6 +13,7 @@ class Search extends React.Component {
         this.search_information = this.search_information.bind(this);
         this.get_planet_picture = this.get_planet_picture.bind(this);
         this.get_planet_info = this.get_planet_info.bind(this);
+        this.expPlanet = this.expPlanet.bind(this);
     }
 
     get_planet_picture(PlanetName) {
@@ -45,6 +46,19 @@ class Search extends React.Component {
     }
 
 
+    expPlanet(EXO) {
+        document.getElementById("planeet_naam").innerText = EXO;
+        console.log(EXO)
+        fetch("https://images-api.nasa.gov/search?q=" + EXO)
+            .then((res) => res.json())
+            .then((data) => {
+                for (let i = 0; i < 4; i++) {
+                    //Pakt 4 fotos van NASA API en plakt bij de placeholder
+                    document.getElementById("foto" + i).src = data["collection"]["items"][i]["links"][0]["href"];
+                }
+            })
+    }
+
     search_information() {
         //Zoekt informatie over de defbetreffende planeet
         fetch("https://api.le-systeme-solaire.net/rest/bodies/" + document.getElementById("planeet_input").value)
@@ -53,12 +67,14 @@ class Search extends React.Component {
                 if (data.isPlanet) {
                     console.log("Het is een planeet"); 
                     this.get_planet_picture(data.englishName)
-                    console.clear();
+                    //console.clear();
                     this.get_planet_info(data.englishName)
                     }
                 }
-            ).catch(error => console.log("Het is geen planeet, zoeken voor andere opties... "))
-        
+            ).catch(error => { 
+                console.log("Het is geen planeet, zoeken voor andere opties... ")
+                this.expPlanet(document.getElementById("planeet_input").value);
+            })
         }
 
     enteredinput(e) {
