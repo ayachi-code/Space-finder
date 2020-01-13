@@ -17,7 +17,8 @@ class Display extends React.Component {
         return (
             <div className="float-right border border-white" style={this.display_info}>
                 <div className="border border-white text-center">
-                        <span id="planeet_naam"/>
+                        <span id="planeet_naam"/> <br/>
+                        <span>Pictures are from the NASA API</span>
                     </div>
                 <div>
                             <div className="border border-white">

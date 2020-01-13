@@ -21,14 +21,22 @@ class Search extends React.Component {
         fetch("https://raw.githubusercontent.com/paulfitz/exoplanets/master/data/exoplanet.json")
             .then((res) => res.json())
             .then((data) => {
-                let exoplanet = [];
+                let exooplanet = {Planetnaam: [],id: []};
                 for (let i = 0; i < data.length; i++) {
-                    exoplanet.push(data[i].star_name);
+                    exooplanet.Planetnaam.push(data[i].star_name);
+                    exooplanet.id.push(i);
                 }
-                console.log(exoplanet)
-                if (exoplanet.includes(EXO) === true) {
-                    console.log("Exo Planeet bestaat");
-                }
+                console.log(data[0].star_name)
+                //console.log(data[0].name)
+                //if (exoplanet.includes(EXO) === true) {
+                    //console.log("Exo Planeet bestaat");
+                    //document.getElementById("gravity").innerText =  data.EXO.Planet_status
+                    //document.getElementById("density").innerText =
+                    //document.getElementById("mass").innerText = 
+                    //document.getElementById("volume").innerText = 
+                    //document.getElementById("sun_d").innerText = 
+                    //document.getElementById("diameter").innerText = 
+                //}
             } );
     }
 
@@ -63,7 +71,7 @@ class Search extends React.Component {
 
 
     expPlanet(EXO) {
-        document.getElementById("planeet_naam").innerText = EXO;
+        document.getElementById("planeet_naam").innerText = EXO + " (EXO)";
         fetch("https://images-api.nasa.gov/search?q=" + EXO)
             .then((res) => res.json())
             .then((data) => {
