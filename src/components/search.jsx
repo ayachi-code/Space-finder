@@ -14,6 +14,18 @@ class Search extends React.Component {
         this.get_planet_picture = this.get_planet_picture.bind(this);
         this.get_planet_info = this.get_planet_info.bind(this);
         this.expPlanet = this.expPlanet.bind(this);
+        this.get_exoPlanet_data = this.get_exoPlanet_data.bind(this);
+    }
+
+    get_exoPlanet_data(EXO) {
+        let exoplanet = [];
+        fetch("https://raw.githubusercontent.com/paulfitz/exoplanets/master/data/exoplanet.json")
+            .then((res) => res.json())
+            .then((data) => {
+                for (let i = 0; i < data.length; i++) {
+                    console.log(data[i].star_name);  
+                }    
+            } );
     }
 
     get_planet_picture(PlanetName) {
@@ -48,6 +60,7 @@ class Search extends React.Component {
 
     expPlanet(EXO) {
         document.getElementById("planeet_naam").innerText = EXO;
+        console.log("Dit is een exo planeet of stelsel ")
         console.log(EXO)
         fetch("https://images-api.nasa.gov/search?q=" + EXO)
             .then((res) => res.json())
@@ -57,6 +70,7 @@ class Search extends React.Component {
                     document.getElementById("foto" + i).src = data["collection"]["items"][i]["links"][0]["href"];
                 }
             })
+        this.get_exoPlanet_data(EXO);
     }
 
     search_information() {
@@ -88,7 +102,7 @@ class Search extends React.Component {
         return(
             <div className="w-100 text-center"  style={this.input}>
                 <input className="rounded-pill text-center " type="input" id="planeet_input" placeholder="Explore space" onKeyDown={this.enteredinput}/>
-                         <p id="log" className="text-primary"></p>
+                         <p onLoad={this.exoplanet_info} id="log" className="text-primary"></p>
                     </div>
         )
     }
