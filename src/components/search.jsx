@@ -18,13 +18,17 @@ class Search extends React.Component {
     }
 
     get_exoPlanet_data(EXO) {
-        let exoplanet = [];
         fetch("https://raw.githubusercontent.com/paulfitz/exoplanets/master/data/exoplanet.json")
             .then((res) => res.json())
             .then((data) => {
+                let exoplanet = [];
                 for (let i = 0; i < data.length; i++) {
-                    console.log(data[i].star_name);  
-                }    
+                    exoplanet.push(data[i].star_name);
+                }
+                console.log(exoplanet)
+                if (exoplanet.includes(EXO) === true) {
+                    console.log("Exo Planeet bestaat");
+                }
             } );
     }
 
@@ -60,17 +64,16 @@ class Search extends React.Component {
 
     expPlanet(EXO) {
         document.getElementById("planeet_naam").innerText = EXO;
-        console.log("Dit is een exo planeet of stelsel ")
-        console.log(EXO)
         fetch("https://images-api.nasa.gov/search?q=" + EXO)
             .then((res) => res.json())
             .then((data) => {
-                for (let i = 0; i < 4; i++) {
-                    //Pakt 4 fotos van NASA API en plakt bij de placeholder
-                    document.getElementById("foto" + i).src = data["collection"]["items"][i]["links"][0]["href"];
+                for (let a = 0; a < 3; a++) {
+                    document.getElementById("foto" + a).src = data["collection"]["items"][a]["links"][0]["href"];
                 }
+                this.get_exoPlanet_data(EXO);
+            }).catch((error) => {
+                console.log("EXO PLANEET BESTAAT NIET")
             })
-        this.get_exoPlanet_data(EXO);
     }
 
     search_information() {
@@ -81,7 +84,6 @@ class Search extends React.Component {
                 if (data.isPlanet) {
                     console.log("Het is een planeet"); 
                     this.get_planet_picture(data.englishName)
-                    //console.clear();
                     this.get_planet_info(data.englishName)
                     }
                 }
