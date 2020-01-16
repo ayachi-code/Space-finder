@@ -29,8 +29,8 @@ class Search extends React.Component {
                 if (exooplanet.Planetnaam.includes(EXO)) {
                     console.log("Bestaat")
                     let index_of_planet = exooplanet.Planetnaam.indexOf(EXO);
-                    data[index_of_planet] = document.getElementById("density").innerText = "Discoverd in: " + data[index_of_planet].discovered
-                    data[index_of_planet] = document.getElementById("mass").innerText = "Orbital period: " + data[index_of_planet];
+                    data[index_of_planet] = document.getElementById("density").innerText = "Discoverd in: " + data[index_of_planet].discovered;
+                    //data[index_of_planet] = document.getElementById("mass").innerText = "Mass: " + data[index_of_planet].mass + "* Earth mass";
                 }
             } );
     }
@@ -74,7 +74,9 @@ class Search extends React.Component {
                     document.getElementById("foto" + a).src = data["collection"]["items"][a]["links"][0]["href"];
                 }
                 this.get_exoPlanet_data(EXO);
+                console.log("EXO, BESTAAT")
             }).catch((error) => {
+
                 console.log("EXO PLANEET BESTAAT NIET")
             })
     }
