@@ -21,17 +21,16 @@ class Search extends React.Component {
         fetch("https://raw.githubusercontent.com/paulfitz/exoplanets/master/data/exoplanet.json")
             .then((res) => res.json())
             .then((data) => {
-                console.log(data[0].star_name)
                 let exooplanet = {Planetnaam: [],id: []};
                 for (let i = 0; i < data.length; i++) {
                     exooplanet.Planetnaam.push(data[i].star_name);
                     exooplanet.id.push(i);
                 }
                 if (exooplanet.Planetnaam.includes(EXO)) {
-                    console.log("EXO bestaat")
+                    console.log("Bestaat")
                     let index_of_planet = exooplanet.Planetnaam.indexOf(EXO);
-                    data[index_of_planet] = document.getElementById("gravity").innerText = "Planet status: " + data[index_of_planet].planet_status
                     data[index_of_planet] = document.getElementById("density").innerText = "Discoverd in: " + data[index_of_planet].discovered
+                    data[index_of_planet] = document.getElementById("mass").innerText = "Orbital period: " + data[index_of_planet];
                 }
             } );
     }
