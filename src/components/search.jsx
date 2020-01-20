@@ -36,7 +36,6 @@ class Search extends React.Component {
                     document.getElementById("volume").innerText = "Angular distance: " + data[index_of_planet].angular_distance + "°";
                     document.getElementById("mass").innerText =  "Mass: " + data[index_of_planet].mass + "*" +  " Earth mass ";
                     document.getElementById("density").innerText = "Discoverd in: " + data[index_of_planet].discovered;
-                    //console.log(data[index_of_planet].mass)
                 }
             } );
     }
