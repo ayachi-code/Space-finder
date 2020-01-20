@@ -29,8 +29,14 @@ class Search extends React.Component {
                 if (exooplanet.Planetnaam.includes(EXO)) {
                     console.log("Bestaat")
                     let index_of_planet = exooplanet.Planetnaam.indexOf(EXO);
-                    data[index_of_planet] = document.getElementById("density").innerText = "Discoverd in: " + data[index_of_planet].discovered;
-                    //data[index_of_planet] = document.getElementById("mass").innerText = "Mass: " + data[index_of_planet].mass + "* Earth mass";
+                    console.log(data[index_of_planet].mass);
+                    document.getElementById("gravity").innerText = "eccentricty: " + data[index_of_planet].eccentricty;
+                    document.getElementById("sun_d").innerText = "semi mayor axis: " + data[index_of_planet].semi_major_axis + " A.U";
+                    document.getElementById("diameter").innerText = "Oribital period: " + Math.floor(data[index_of_planet].orbital_period)  + " days";
+                    document.getElementById("volume").innerText = "Angular distance: " + data[index_of_planet].angular_distance + "°";
+                    document.getElementById("mass").innerText =  "Mass: " + data[index_of_planet].mass + "*" +  " Earth mass ";
+                    document.getElementById("density").innerText = "Discoverd in: " + data[index_of_planet].discovered;
+                    //console.log(data[index_of_planet].mass)
                 }
             } );
     }
