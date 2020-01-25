@@ -4,6 +4,7 @@ import Apod from './components/apod.jsx'
 import Search from './components/search.jsx'
 import Display from './components/display.jsx'
 import RandomPlanet from './components/RandomPlanet.jsx';
+import Logo from './components/logo.jsx'
 
 
 class App extends React.Component {
