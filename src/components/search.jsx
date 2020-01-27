@@ -9,6 +9,9 @@ class Search extends React.Component {
             position: "absolute",
             top: "50%"
         }
+        this.state = {
+            EXO: ""
+        }
         this.enteredinput = this.enteredinput.bind(this);
         this.search_information = this.search_information.bind(this);
         this.get_planet_picture = this.get_planet_picture.bind(this);
@@ -28,10 +31,11 @@ class Search extends React.Component {
                 }
                 if (exooplanet.Planetnaam.includes(EXO)) {
                     console.log("Bestaat")
+                    document.getElementById("bestaat").innerText = "";
                     let index_of_planet = exooplanet.Planetnaam.indexOf(EXO);
                     console.log(data[index_of_planet].mass);
-                    document.getElementById("gravity").innerText = "eccentricty: " + data[index_of_planet].eccentricty;
-                    document.getElementById("sun_d").innerText = "semi mayor axis: " + data[index_of_planet].semi_major_axis + " A.U";
+                    document.getElementById("gravity").innerText = "Eccentricty: " + data[index_of_planet].eccentricty;
+                    document.getElementById("sun_d").innerText = "Semi mayor axis: " + data[index_of_planet].semi_major_axis + " A.U";
                     document.getElementById("diameter").innerText = "Oribital period: " + Math.floor(data[index_of_planet].orbital_period)  + " days";
                     document.getElementById("volume").innerText = "Angular distance: " + data[index_of_planet].angular_distance + "°";
                     document.getElementById("mass").innerText =  "Mass: " + data[index_of_planet].mass * 100 + "*" +  " Earth mass ";
@@ -78,11 +82,17 @@ class Search extends React.Component {
                 for (let a = 0; a < 3; a++) {
                     document.getElementById("foto" + a).src = data["collection"]["items"][a]["links"][0]["href"];
                 }
+                localStorage.setItem("exo",EXO)
+                this.setState({
+                    EXO: EXO
+                  });
                 this.get_exoPlanet_data(EXO);
                 console.log("EXO, BESTAAT")
             }).catch((error) => {
-
                 console.log("EXO PLANEET BESTAAT NIET")
+                //console.log("Hey" + this.state.EXO);
+                document.getElementById("bestaat").innerText = "Planet doesn't exist"
+                document.getElementById("planeet_naam").innerText = this.state.EXO + "(EXO)";
             })
     }
 
@@ -92,13 +102,18 @@ class Search extends React.Component {
             .then((res) => res.json())
             .then((data) => {
                 if (data.isPlanet) {
-                    console.log("Het is een planeet"); 
+                    console.log("Het is een planeet");
+                    document.getElementById("bestaat").innerText = "";
+                    localStorage.setItem("Solar",data.englishName) 
+                    this.setState({
+                        EXO: data.englishName
+                      });
                     this.get_planet_picture(data.englishName)
                     this.get_planet_info(data.englishName)
                     }
                 }
             ).catch(error => { 
-                console.log("Het is geen planeet, zoeken voor andere opties... ")
+                document.getElementById("planeet_naam").innerText = this.state.EXO
                 this.expPlanet(document.getElementById("planeet_input").value);
             })
         }
@@ -115,6 +130,7 @@ class Search extends React.Component {
             <div className="w-100 text-center"  style={this.input}>
                 <input className="rounded-pill text-center " type="input" id="planeet_input" placeholder="Explore space" onKeyDown={this.enteredinput}/>
                          <p onLoad={this.exoplanet_info} id="log" className="text-primary"></p>
+                         <p className="text-primary" id="bestaat"></p>
                     </div>
         )
     }
