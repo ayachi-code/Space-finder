@@ -1,9 +1,10 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+
 
 class Logo extends React.Component {
     render() {
         return(
+            // eslint-disable-next-line jsx-a11y/alt-text
             <img src="./assest/logo.png"/>
         )
     }

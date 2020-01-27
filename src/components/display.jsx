@@ -1,7 +1,6 @@
 import React from 'react';
 // eslint-disable-next-line 
-import ReactDom from 'react-dom';
-import Search from './search.jsx';
+
 
 
 class Display extends React.Component {

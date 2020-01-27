@@ -4,6 +4,7 @@ import Apod from './components/apod.jsx'
 import Search from './components/search.jsx'
 import Display from './components/display.jsx'
 import RandomPlanet from './components/RandomPlanet.jsx';
+// eslint-disable-next-line no-unused-vars
 import Logo from './components/logo.jsx'
 
 

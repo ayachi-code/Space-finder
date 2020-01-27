@@ -4,6 +4,7 @@ import  React from 'react';
 class Search extends React.Component {
     constructor(props) {
         super(props)
+        
         this.input = {
             margin: "0",
             position: "absolute",
@@ -12,12 +13,23 @@ class Search extends React.Component {
         this.state = {
             EXO: ""
         }
+
+        //Functies binde
         this.enteredinput = this.enteredinput.bind(this);
         this.search_information = this.search_information.bind(this);
         this.get_planet_picture = this.get_planet_picture.bind(this);
         this.get_planet_info = this.get_planet_info.bind(this);
         this.expPlanet = this.expPlanet.bind(this);
         this.get_exoPlanet_data = this.get_exoPlanet_data.bind(this);
+        this.pageload = this.pageload.bind(this);
+    }
+
+    pageload() {
+        this.search_information("Earth")
+    }
+
+    componentDidMount() {
+        window.addEventListener('load',this.pageload)
     }
 
     get_exoPlanet_data(EXO) {
@@ -38,6 +50,7 @@ class Search extends React.Component {
                     document.getElementById("sun_d").innerText = "Semi mayor axis: " + data[index_of_planet].semi_major_axis + " A.U";
                     document.getElementById("diameter").innerText = "Oribital period: " + Math.floor(data[index_of_planet].orbital_period)  + " days";
                     document.getElementById("volume").innerText = "Angular distance: " + data[index_of_planet].angular_distance + "°";
+                    // eslint-disable-next-line no-useless-concat
                     document.getElementById("mass").innerText =  "Mass: " + data[index_of_planet].mass * 100 + "*" +  " Earth mass ";
                     document.getElementById("density").innerText = "Discoverd in: " + data[index_of_planet].discovered;
                 }
@@ -96,15 +109,14 @@ class Search extends React.Component {
             })
     }
 
-    search_information() {
+    search_information(PlanetName) {
         //Zoekt informatie over de defbetreffende planeet
-        fetch("https://api.le-systeme-solaire.net/rest/bodies/" + document.getElementById("planeet_input").value)
+        fetch("https://api.le-systeme-solaire.net/rest/bodies/" +  PlanetName)//document.getElementById("planeet_input").value)
             .then((res) => res.json())
             .then((data) => {
                 if (data.isPlanet) {
                     console.log("Het is een planeet");
                     document.getElementById("bestaat").innerText = "";
-                    localStorage.setItem("Solar",data.englishName) 
                     this.setState({
                         EXO: data.englishName
                       });
@@ -121,7 +133,7 @@ class Search extends React.Component {
     enteredinput(e) {
         if(e.key === 'Enter') {
             //Als enter word geklikt dan zoekt informatie over planeet
-            this.search_information()
+            this.search_information(document.getElementById("planeet_input").value)
         }
     }
 
