@@ -36,11 +36,15 @@ class Search extends React.Component {
         fetch("https://raw.githubusercontent.com/paulfitz/exoplanets/master/data/exoplanet.json")
             .then((res) => res.json())
             .then((data) => {
-                let exooplanet = {Planetnaam: [],id: []};
+                let exooplanet = {Planetnaam: ["Bilal"],id: []};
                 for (let i = 0; i < data.length; i++) {
-                    exooplanet.Planetnaam.push(data[i].star_name);
+                    let exo_planeet = data[i]["# name"]
+                    exo_planeet = exo_planeet.replace(/\s/g, '')
+                    exooplanet.Planetnaam.push(exo_planeet);
                     exooplanet.id.push(i);
                 }
+                console.log(EXO)
+                console.log(exooplanet.Planetnaam)
                 if (exooplanet.Planetnaam.includes(EXO)) {
                     console.log("Bestaat")
                     document.getElementById("bestaat").innerText = "";
