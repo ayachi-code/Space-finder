@@ -101,28 +101,6 @@ class Search extends React.Component {
            
         })
 
-
-
-/*
-        fetch("https://images-api.nasa.gov/search?q=" + EXO)
-            .then((res) => res.json())
-            .then((data) => {
-                for (let a = 0; a < 3; a++) {
-                    document.getElementById("foto" + a).src = data["collection"]["items"][a]["links"][0]["href"];
-                }
-                localStorage.setItem("exo",EXO)
-                this.setState({
-                    EXO: EXO
-                  });
-                this.get_exoPlanet_data(EXO);
-                console.log("EXO, BESTAAT")
-            }).catch((error) => {
-                console.log("EXO Planeet no foto found")
-                this.get_exoPlanet_data(this.state.EXO);
-                //document.getElementById("bestaat").innerText = "Planet doesn't exist"
-                document.getElementById("planeet_naam").innerText = this.state.EXO;
-            })
-            */
     }
 
     search_information(PlanetName) {
