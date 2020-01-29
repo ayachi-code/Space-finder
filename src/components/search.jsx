@@ -96,7 +96,13 @@ class Search extends React.Component {
         fetch("https://raw.githubusercontent.com/paulfitz/exoplanets/master/data/exoplanet.json")
         .then((res) => res.json())
         .then((data) => {
-            console.log("Er is planeet informatie beschikbaar")
+            let Planet_info = {Planet_name: [],id: []}
+            console.log("Zoeken en kijken als de planeet die je zoekt in de json list :)")
+            for (let i = 0; i < data.length; i++) {
+                Planet_info.Planet_name.push(data[i].star_name);
+                Planet_info.id.push(i);
+            }
+            
         })
 
 /*
