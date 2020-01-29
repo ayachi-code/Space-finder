@@ -17,10 +17,8 @@ class Search extends React.Component {
         //Functies binde
         this.enteredinput = this.enteredinput.bind(this);
         this.search_information = this.search_information.bind(this);
-        //this.get_planet_picture = this.get_planet_picture.bind(this);
         this.get_planet_info = this.get_planet_info.bind(this);
         this.expPlanet = this.expPlanet.bind(this);
-        //this.get_exoPlanet_data = this.get_exoPlanet_data.bind(this);
         this.pageload = this.pageload.bind(this);
     }
 
@@ -51,7 +49,10 @@ class Search extends React.Component {
                         //Pakt 4 fotos van NASA API en plakt bij de placeholder
                         document.getElementById("foto" + i).src = data["collection"]["items"][i]["links"][0]["href"];
                     }
-            }).catch((error) => console.error("Error er is iets fout gegaan" + error));
+            }).catch((error) =>  {
+                console.error("Er is geen foto voor die planeeet we hebben helemaal geen info ervan");
+       
+            });
     }
 
 
@@ -101,7 +102,9 @@ class Search extends React.Component {
             } else {
                 console.log("Er is geen informatie van beschikbaar kijk als er fotos van zijn")
                 //Kijkt als er nog fotos van beschikbaar zijn.
-                //this.expPlanet_foto();
+                //document.getElementById("info_box").innerText = "";
+                //document.getElementById("info_box").innerText = "Er is geen informatie beschikbaar over " + EXO;
+                this.expPlanet_foto(EXO);
             }
            
         })
