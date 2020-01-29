@@ -17,7 +17,7 @@ class Search extends React.Component {
         //Functies binde
         this.enteredinput = this.enteredinput.bind(this);
         this.search_information = this.search_information.bind(this);
-        this.get_planet_picture = this.get_planet_picture.bind(this);
+        //this.get_planet_picture = this.get_planet_picture.bind(this);
         this.get_planet_info = this.get_planet_info.bind(this);
         this.expPlanet = this.expPlanet.bind(this);
         //this.get_exoPlanet_data = this.get_exoPlanet_data.bind(this);
@@ -34,8 +34,12 @@ class Search extends React.Component {
 
     expPlanet_foto(EXO) {
         console.log(EXO)
+        fetch("https://images-api.nasa.gov/search? " + EXO)
+        .then((res) => res.json())
+        .then((data) => {
+            this.get_planet_picture(EXO)
+        })
     }
-
 
 
     get_planet_picture(PlanetName) {
@@ -49,6 +53,7 @@ class Search extends React.Component {
                     }
             }).catch((error) => console.error("Error er is iets fout gegaan" + error));
     }
+
 
     get_planet_info(PlanetName) {
         document.getElementById("planeet_naam").innerText = PlanetName;
@@ -73,15 +78,15 @@ class Search extends React.Component {
         //Kijkt als het een exoplaneet is
         fetch("https://raw.githubusercontent.com/paulfitz/exoplanets/master/data/exoplanet.json")
         .then((res) => res.json())
-        .then((data) => {
+        .then((data) => {               
             let Planet_info = {Star_name2: [],id: []}
             console.log("Zoeken en kijken als de planeet die je zoekt in de json list :)")
             for (let i = 0; i < data.length; i++) {
                 Planet_info.Star_name2.push(data[i].star_name);
-                Planet_info.id.push(i);
-            }
+                Planet_info.id.push(i); 
+            }                           
             //Checkt als de desbetreffende Exo planeet(Star) als die in de Star
-            console.log(Planet_info)
+            console.log(Planet_info)    
             if (Planet_info.Star_name2.includes(EXO)) {
                 console.log("Er is informatie van beschikbaar")
                 let index_of_planet = Planet_info.Star_name2.indexOf(EXO);
@@ -92,7 +97,7 @@ class Search extends React.Component {
                 // eslint-disable-next-line no-useless-concat
                 document.getElementById("mass").innerText =  "Mass: " + data[index_of_planet].mass * 100 + "*" +  " Earth mass ";
                 document.getElementById("density").innerText = "Discoverd in: " + data[index_of_planet].discovered;
-                this.expPlanet_foto();
+                this.expPlanet_foto(EXO);
             } else {
                 console.log("Er is geen informatie van beschikbaar kijk als er fotos van zijn")
                 //Kijkt als er nog fotos van beschikbaar zijn.
