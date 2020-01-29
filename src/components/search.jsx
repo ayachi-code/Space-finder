@@ -96,13 +96,21 @@ class Search extends React.Component {
         fetch("https://raw.githubusercontent.com/paulfitz/exoplanets/master/data/exoplanet.json")
         .then((res) => res.json())
         .then((data) => {
-            let Planet_info = {Planet_name: [],id: []}
+            let Planet_info = {Star_name2: [],id: []}
             console.log("Zoeken en kijken als de planeet die je zoekt in de json list :)")
             for (let i = 0; i < data.length; i++) {
-                Planet_info.Planet_name.push(data[i].star_name);
+                Planet_info.Star_name2.push(data[i].star_name);
                 Planet_info.id.push(i);
             }
-            
+            //Checkt als de desbetreffende Exo planeet(Star) als die in de Star
+            console.log(Planet_info)
+            if (Planet_info.Star_name2.includes(EXO)) {
+                console.log("Er is informatie van beschikbaar")
+            } else {
+                console.log("Er is geen informatie van beschikbaar")
+                //Kijkt als er nog fotos van beschikbaar zijn.
+            }
+           
         })
 
 /*
