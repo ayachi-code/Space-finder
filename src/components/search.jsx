@@ -32,35 +32,10 @@ class Search extends React.Component {
         window.addEventListener('load',this.pageload)
     }
 
-    /*
-    get_exoPlanet_data(EXO) {
-        fetch("https://raw.githubusercontent.com/paulfitz/exoplanets/master/data/exoplanet.json")
-            .then((res) => res.json())
-            .then((data) => {
-                let exooplanet = {Planetnaam: ["Bilal"],id: []};
-                for (let i = 0; i < data.length; i++) {
-                    exooplanet.Planetnaam.push(data[i].star_name);
-                    exooplanet.id.push(i);
-                }
-                if (exooplanet.Planetnaam.includes(EXO)) {
-                    console.log("Bestaat")
-                    document.getElementById("bestaat").innerText = "";
-                    let index_of_planet = exooplanet.Planetnaam.indexOf(EXO);
-                    console.log(data[index_of_planet].mass);
-                    document.getElementById("gravity").innerText = "Name: " + data[index_of_planet]["# name"];
-                    document.getElementById("sun_d").innerText = "Semi mayor axis: " + data[index_of_planet].semi_major_axis + " A.U";
-                    document.getElementById("diameter").innerText = "Oribital period: " + Math.floor(data[index_of_planet].orbital_period)  + " days";
-                    document.getElementById("volume").innerText = "Angular distance: " + data[index_of_planet].angular_distance + "°";
-                    // eslint-disable-next-line no-useless-concat
-                    document.getElementById("mass").innerText =  "Mass: " + data[index_of_planet].mass * 100 + "*" +  " Earth mass ";
-                    document.getElementById("density").innerText = "Discoverd in: " + data[index_of_planet].discovered;
-                 } else {
-                     console.log("TEST:: Ey bilal de planeet bestaat niet en er is geen info ervan")
-                     document.getElementById("bestaat").innerText = "Planet doesn't exist"
-                 }
-            } );
+    expPlanet_foto(EXO) {
+        console.log(EXO)
     }
-    */
+
 
 
     get_planet_picture(PlanetName) {
@@ -110,7 +85,6 @@ class Search extends React.Component {
             if (Planet_info.Star_name2.includes(EXO)) {
                 console.log("Er is informatie van beschikbaar")
                 let index_of_planet = Planet_info.Star_name2.indexOf(EXO);
-                
                 document.getElementById("gravity").innerText = "Name: " + data[index_of_planet]["# name"];
                 document.getElementById("sun_d").innerText = "Semi mayor axis: " + data[index_of_planet].semi_major_axis + " A.U";
                 document.getElementById("diameter").innerText = "Oribital period: " + Math.floor(data[index_of_planet].orbital_period)  + " days";
@@ -118,9 +92,11 @@ class Search extends React.Component {
                 // eslint-disable-next-line no-useless-concat
                 document.getElementById("mass").innerText =  "Mass: " + data[index_of_planet].mass * 100 + "*" +  " Earth mass ";
                 document.getElementById("density").innerText = "Discoverd in: " + data[index_of_planet].discovered;
+                this.expPlanet_foto();
             } else {
-                console.log("Er is geen informatie van beschikbaar")
+                console.log("Er is geen informatie van beschikbaar kijk als er fotos van zijn")
                 //Kijkt als er nog fotos van beschikbaar zijn.
+                //this.expPlanet_foto();
             }
            
         })
