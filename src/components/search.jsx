@@ -36,7 +36,7 @@ class Search extends React.Component {
         fetch("https://raw.githubusercontent.com/paulfitz/exoplanets/master/data/exoplanet.json")
             .then((res) => res.json())
             .then((data) => {
-                let exooplanet = {Planetnaam: [],id: []};
+                let exooplanet = {Planetnaam: ["Bilal"],id: []};
                 for (let i = 0; i < data.length; i++) {
                     exooplanet.Planetnaam.push(data[i].star_name);
                     exooplanet.id.push(i);
@@ -46,14 +46,17 @@ class Search extends React.Component {
                     document.getElementById("bestaat").innerText = "";
                     let index_of_planet = exooplanet.Planetnaam.indexOf(EXO);
                     console.log(data[index_of_planet].mass);
-                    document.getElementById("gravity").innerText = "Eccentricty: " + data[index_of_planet].eccentricty;
+                    document.getElementById("gravity").innerText = "Name: " + data[index_of_planet]["# name"];
                     document.getElementById("sun_d").innerText = "Semi mayor axis: " + data[index_of_planet].semi_major_axis + " A.U";
                     document.getElementById("diameter").innerText = "Oribital period: " + Math.floor(data[index_of_planet].orbital_period)  + " days";
                     document.getElementById("volume").innerText = "Angular distance: " + data[index_of_planet].angular_distance + "°";
                     // eslint-disable-next-line no-useless-concat
                     document.getElementById("mass").innerText =  "Mass: " + data[index_of_planet].mass * 100 + "*" +  " Earth mass ";
                     document.getElementById("density").innerText = "Discoverd in: " + data[index_of_planet].discovered;
-                }
+                 } else {
+                     console.log("TEST:: Ey bilal de planeet bestaat niet en er is geen info ervan")
+                     document.getElementById("bestaat").innerText = "Planet doesn't exist"
+                 }
             } );
     }
 
@@ -102,10 +105,10 @@ class Search extends React.Component {
                 this.get_exoPlanet_data(EXO);
                 console.log("EXO, BESTAAT")
             }).catch((error) => {
-                console.log("EXO PLANEET BESTAAT NIET")
-                //console.log("Hey" + this.state.EXO);
-                document.getElementById("bestaat").innerText = "Planet doesn't exist"
-                document.getElementById("planeet_naam").innerText = this.state.EXO + "(EXO)";
+                console.log("EXO Planeet no foto found")
+                this.get_exoPlanet_data(this.state.EXO);
+                //document.getElementById("bestaat").innerText = "Planet doesn't exist"
+                document.getElementById("planeet_naam").innerText = this.state.EXO;
             })
     }
 

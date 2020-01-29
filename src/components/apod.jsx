@@ -20,13 +20,13 @@ class Apod extends React.Component {
         .then((res) => {
             res.json().then((data) => {
                //Als youtube video is dan geef een oude foto APOD  anders nieuwe
-               if (data.url.match("youtube")) {
-                    localStorage.setItem("apod","https://images-assets.nasa.gov/image/PIA00122/PIA00122~thumb.jpg")
-                    console.log("Oude foto vragen")
-               } else {
-                   console.log("Normaal foto")
-                   localStorage.setItem("apod",data.hdurl);
-               }
+               //if (data.url.match("youtube")) {
+               //     localStorage.setItem("apod","https://images-assets.nasa.gov/image/PIA00122/PIA00122~thumb.jpg")
+               //     console.log("Oude foto vragen")
+               //} else {
+               //    console.log("Normaal foto")
+               //    localStorage.setItem("apod",data.hdurl);
+               //}
                console.log(data.hdurl)
             })
         })
