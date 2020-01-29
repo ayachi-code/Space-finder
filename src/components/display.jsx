@@ -30,12 +30,12 @@ class Display extends React.Component {
                     <div className="float-right">
                         <br/>
                         <br/>
-                        <p id="gravity">informatie</p>
-                        <p id="density">informatie</p>
-                        <p id="mass">informatie</p>
-                        <p id="volume">informatie</p>
-                        <p id="sun_d">informatie</p>
-                        <p id="diameter">informatie</p>
+                        <p id="gravity"></p>
+                        <p id="density"></p>
+                        <p id="mass"></p>
+                        <p id="volume"></p>
+                        <p id="sun_d"></p>
+                        <p id="diameter"></p>
 
                     </div>
             </div>

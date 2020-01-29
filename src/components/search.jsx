@@ -92,6 +92,14 @@ class Search extends React.Component {
 
     expPlanet(EXO) {
         document.getElementById("planeet_naam").innerText = EXO + " (EXO)";
+        //Kijkt als het een exoplaneet is
+        fetch("https://raw.githubusercontent.com/paulfitz/exoplanets/master/data/exoplanet.json")
+        .then((res) => res.json())
+        .then((data) => {
+            console.log("Er is planeet informatie beschikbaar")
+        })
+
+/*
         fetch("https://images-api.nasa.gov/search?q=" + EXO)
             .then((res) => res.json())
             .then((data) => {
@@ -110,16 +118,17 @@ class Search extends React.Component {
                 //document.getElementById("bestaat").innerText = "Planet doesn't exist"
                 document.getElementById("planeet_naam").innerText = this.state.EXO;
             })
+            */
     }
 
     search_information(PlanetName) {
-        //Zoekt informatie over de defbetreffende planeet
+        //Zoekt informatie over de defbetreffende planeet kijkt als het in onze zonnenstelsel
         fetch("https://api.le-systeme-solaire.net/rest/bodies/" +  PlanetName)//document.getElementById("planeet_input").value)
             .then((res) => res.json())
             .then((data) => {
                 if (data.isPlanet) {
-                    console.log("Het is een planeet");
-                    document.getElementById("bestaat").innerText = "";
+                    console.log("Het is een planeet in onze zonnenstelsel");
+                    document.getElementById("bestaat").innerText = "Planet exist"
                     this.setState({
                         EXO: data.englishName
                       });
