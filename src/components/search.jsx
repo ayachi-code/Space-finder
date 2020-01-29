@@ -109,7 +109,6 @@ class Search extends React.Component {
                 console.log("EXO PLANEET BESTAAT NIET")
                 //console.log("Hey" + this.state.EXO);
                 document.getElementById("bestaat").innerText = "Planet doesn't exist"
-                document.getElementById("planeet_naam").innerText = this.state.EXO + "(EXO)";
             })
     }
 
