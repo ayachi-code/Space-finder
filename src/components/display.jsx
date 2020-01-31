@@ -31,6 +31,7 @@ class Display extends React.Component {
                         <br/>
                         <br/>
                         <p id="error"></p>
+                        <p id="name"></p>
                         <p id="gravity"></p>
                         <p id="density"></p>
                         <p id="mass"></p>

@@ -11,7 +11,8 @@ class Search extends React.Component {
             top: "50%"
         }
         this.state = {
-            EXO: ""
+            EXO: "",
+            exist: ""
         }
 
         //Functies binde
@@ -44,13 +45,14 @@ class Search extends React.Component {
                 if (!info) {
                     console.log("Planet doesn't exist")
                     document.getElementById("bestaat").innerText = "Planet doesn't exist";
+                    this.search_information("Earth")
                 } else {
                     console.log("There is information avaliable but no pictures")
                     for (let i = 0; i < 4; i++) {
                         //kruis geplakt
                         document.getElementById("foto" + i).src = "./assest/x.png"
                     }
-                    document.getElementById("bestaat").innerText = "Planet/star exist but no images.";
+                    document.getElementById("bestaat").innerText = "Planet/star found but no images.";
                 }       
             });
     }
@@ -63,6 +65,7 @@ class Search extends React.Component {
             .then((res) => res.json())
             .then((data) => {
                //Laat data verschijnen op pagina van de desbetreffende planeet
+               document.getElementById("name").innerText = "Name: " + data.englishName;
                document.getElementById("gravity").innerText = "acceleration: " + data.gravity + " m/s2";
                document.getElementById("density").innerText = "Density: " + data.density + "g/cm3";
                document.getElementById("mass").innerText = "Mass: " + data.mass.massValue + "*10^ " + data.mass.massExponent +" kg"
@@ -75,13 +78,13 @@ class Search extends React.Component {
 
 
     expPlanet(EXO) {
-        document.getElementById("planeet_naam").innerText = EXO + " (EXO)";
+        document.getElementById("planeet_naam").innerText = EXO;
         //Kijkt als het een exoplaneet is
         fetch("https://raw.githubusercontent.com/paulfitz/exoplanets/master/data/exoplanet.json")
         .then((res) => res.json())
         .then((data) => {               
             let Planet_info = {Star_name2: [],id: []}
-            console.log("Zoeken en kijken als de planeet die je zoekt in de json list :)")
+            console.log("Zoeken en kijken als de ster die je zoekt in de json list :)")
             for (let i = 0; i < data.length; i++) {
                 Planet_info.Star_name2.push(data[i].star_name);
                 Planet_info.id.push(i); 
@@ -89,12 +92,13 @@ class Search extends React.Component {
             //Checkt als de desbetreffende Exo planeet(Star) als die in de Star
             console.log(Planet_info)    
             if (Planet_info.Star_name2.includes(EXO)) {
-                document.getElementById("info_box").style.color = "white";
-                document.getElementById("error").style.color = "black";
-                document.getElementById("error").innerText = "";
+                this.setState({
+                    exist: ""
+                });
                 console.log("Er is informatie van beschikbaar")
                 let index_of_planet = Planet_info.Star_name2.indexOf(EXO);
-                document.getElementById("gravity").innerText = "Name: " + data[index_of_planet]["# name"];
+                document.getElementById("name").innerText = "Star Name: " + data[index_of_planet].star_name
+                document.getElementById("gravity").innerText = "Planet name: " + data[index_of_planet]["# name"];
                 document.getElementById("sun_d").innerText = "Semi mayor axis: " + data[index_of_planet].semi_major_axis + " A.U";
                 document.getElementById("diameter").innerText = "Oribital period: " + Math.floor(data[index_of_planet].orbital_period)  + " days";
                 document.getElementById("volume").innerText = "Angular distance: " + data[index_of_planet].angular_distance + "°";
@@ -103,11 +107,10 @@ class Search extends React.Component {
                 document.getElementById("density").innerText = "Discoverd in: " + data[index_of_planet].discovered;
                 this.get_planet_picture(EXO,true);
             } else {
-                console.log("Er is geen informatie van beschikbaar kijk als er fotos van zijn")
-                document.getElementById("info_box").style.color = "black";
-                document.getElementById("error").innerText = "There is not information found about the planet " + EXO + "but we have pictures ";
-                document.getElementById("error").style.color = "white";
-                this.get_planet_picture(EXO,false);
+                console.log("EXO planeet bestaat niet")
+                document.getElementById("bestaat").innerText = EXO + " isn't found";
+                let sliced_var = document.getElementById("name").innerText;
+                document.getElementById("planeet_naam").innerText = sliced_var.substring(6);
             }
            
         })
@@ -130,9 +133,6 @@ class Search extends React.Component {
                       });
                     this.get_planet_picture(data.englishName)
                     this.get_planet_info(data.englishName)
-                    this.setState({
-                        current_planet: this.state.current_planet = data.englishName
-                    });
                     //console.log(this.state.current_planet)
                     }
                 }
