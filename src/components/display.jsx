@@ -27,9 +27,10 @@ class Display extends React.Component {
                                 <div className="border border-white w-25 float-left"><img className="img-fluid" id="foto3" alt="FOTO" src="./assest/x.png"/></div>
                             </div>
                     </div>
-                    <div className="float-right" id="info_box">
+                    <div className="float-right m-0" id="info_box">
                         <br/>
                         <br/>
+                        <p id="error"></p>
                         <p id="gravity"></p>
                         <p id="density"></p>
                         <p id="mass"></p>

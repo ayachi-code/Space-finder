@@ -90,6 +90,7 @@ class Search extends React.Component {
             console.log(Planet_info)    
             if (Planet_info.Star_name2.includes(EXO)) {
                 document.getElementById("info_box").style.color = "white";
+                document.getElementById("error").style.color = "black";
                 console.log("Er is informatie van beschikbaar")
                 let index_of_planet = Planet_info.Star_name2.indexOf(EXO);
                 document.getElementById("gravity").innerText = "Name: " + data[index_of_planet]["# name"];
@@ -103,6 +104,8 @@ class Search extends React.Component {
             } else {
                 console.log("Er is geen informatie van beschikbaar kijk als er fotos van zijn")
                 document.getElementById("info_box").style.color = "black";
+                document.getElementById("error").innerText = "There is not information found about the planet " + EXO + "but we have pictures ";
+                document.getElementById("error").style.color = "white";
                 this.expPlanet_foto(EXO);
             }
            
@@ -119,6 +122,7 @@ class Search extends React.Component {
                     console.log("Het is een planeet in onze zonnenstelsel");
                     document.getElementById("bestaat").innerText = "Planet exist"
                     document.getElementById("info_box").style.color = "white";
+                    document.getElementById("error").style.color = "black";
                     this.setState({
                         EXO: data.englishName
                       });
