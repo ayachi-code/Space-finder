@@ -23,6 +23,10 @@ class Search extends React.Component {
         this.pageload = this.pageload.bind(this);
     }
 
+    a() {
+        this.search_information("Mars");
+    }
+
     pageload() {
         this.search_information("Earth")
     }
@@ -42,17 +46,14 @@ class Search extends React.Component {
                     }
             }).catch((error) =>  {
                 console.log(info)
-                if (!info) {
-                    console.log("Planet doesn't exist")
-                    document.getElementById("bestaat").innerText = "Planet doesn't exist";
-                    this.search_information("Earth")
-                } else {
-                    console.log("There is information avaliable but no pictures")
+                //Als planeet geen foto heeft dan word er een kruis geplakt
+                if (info){
+                    console.log("Exo planet doesn't exist")
                     for (let i = 0; i < 4; i++) {
                         //kruis geplakt
                         document.getElementById("foto" + i).src = "./assest/x.png"
                     }
-                    document.getElementById("bestaat").innerText = "Planet/star found but no images.";
+                    document.getElementById("bestaat").innerText = "Planet/star found.";
                 }       
             });
     }
@@ -117,7 +118,7 @@ class Search extends React.Component {
 
     }
 
-    search_information(PlanetName) {
+    search_information(PlanetName,controller) {
         //Zoekt informatie over de defbetreffende planeet kijkt als het in onze zonnenstelsel
         fetch("https://api.le-systeme-solaire.net/rest/bodies/" +  PlanetName)//document.getElementById("planeet_input").value)
             .then((res) => res.json())
@@ -137,8 +138,13 @@ class Search extends React.Component {
                     }
                 }
             ).catch(error => { 
-                document.getElementById("planeet_naam").innerText = this.state.EXO
-                this.expPlanet(document.getElementById("planeet_input").value);
+                //Als gebruiker de input gebruikt dan voert hij de zoek exo uit 
+                if (controller) {
+                    this.expPlanet(document.getElementById("planeet_input").value);
+                } else {
+                    //De search randomplanet functie word gebruikt
+                    this.expPlanet(PlanetName);
+                }
             })
         }
 

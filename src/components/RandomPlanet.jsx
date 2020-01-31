@@ -1,4 +1,7 @@
 import React from 'react';
+import Search from './search';
+
+const a = new Search();
 
 
 class RandomPlanet extends React.Component {
@@ -8,8 +11,10 @@ class RandomPlanet extends React.Component {
         fetch("https://raw.githubusercontent.com/paulfitz/exoplanets/master/data/exoplanet.json")
         .then((res) => res.json())
         .then((data) => {
-            console.log(data[Math.floor(Math.random(10) * data.length)]["# name"])
-            //console.log(Math.floor(Math.random(10) * data.length))               
+            //Na elke klik word er een random planeet gezocht
+            let random_planet = data[Math.floor(Math.random(10) * data.length)].star_name
+            a.search_information(random_planet,false);
+            console.log(random_planet)
         })
     }
     
