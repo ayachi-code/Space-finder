@@ -18,6 +18,7 @@ class App extends React.Component {
             <RandomPlanet/>
             <Update/>
             <Apod/>
+            <Logo/>
             <Search/>
             <Feedback/>
             </div>
