@@ -1,7 +1,15 @@
 import React from 'react'
-
+import Fireabase from 'firebase'
 
 class Update extends React.Component {
+
+
+    retrieve_update() {
+        console.log("Versie info word opgehaald van de database")
+    }
+    componentDidMount() {
+        window.addEventListener('load',this.retrieve_update)
+    }
 
     render() {
         return(
@@ -16,7 +24,7 @@ class Update extends React.Component {
                         <tbody>
                             <tr className="text-center ">
                                 <th>
-                                   {this.get_version}
+                                  
                                 </th>
                             </tr>
                         </tbody>
