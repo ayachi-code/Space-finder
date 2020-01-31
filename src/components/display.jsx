@@ -20,7 +20,7 @@ class Display extends React.Component {
                         <span>Pictures are from the NASA API</span>
                     </div>
                 <div>
-                            <div className="border border-white">
+                            <div id="P_pictures" className="border border-white">
                                 <div className="border border-white w-25 float-left"><img className="img-fluid" id="foto0" alt="FOTO" src="./assest/x.png"/></div>
                                 <div className="border border-white w-25 float-left"><img className="img-fluid" id="foto1" alt="FOTO" src="./assest/x.png"/></div>
                                 <div className="border border-white w-25 float-left"><img className="img-fluid" id="foto2" alt="FOTO" src="./assest/x.png"/></div>

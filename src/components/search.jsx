@@ -30,17 +30,7 @@ class Search extends React.Component {
         window.addEventListener('load',this.pageload)
     }
 
-    expPlanet_foto(EXO) {
-        console.log(EXO)
-        fetch("https://images-api.nasa.gov/search? " + EXO)
-        .then((res) => res.json())
-        .then((data) => {
-            this.get_planet_picture(EXO)
-        })
-    }
-
-
-    get_planet_picture(PlanetName) {
+    get_planet_picture(PlanetName,info) {
         //Fetched na NASA API voor de fotos
         fetch("https://images-api.nasa.gov/search?q=" + PlanetName)
             .then(res => res.json())
@@ -50,8 +40,18 @@ class Search extends React.Component {
                         document.getElementById("foto" + i).src = data["collection"]["items"][i]["links"][0]["href"];
                     }
             }).catch((error) =>  {
-                console.error("Er is geen foto voor die planeeet we hebben helemaal geen info ervan");
-       
+                console.log(info)
+                if (!info) {
+                    console.log("Planet doesn't exist")
+                    document.getElementById("bestaat").innerText = "Planet doesn't exist";
+                } else {
+                    console.log("There is information avaliable but no pictures")
+                    for (let i = 0; i < 4; i++) {
+                        //kruis geplakt
+                        document.getElementById("foto" + i).src = "./assest/x.png"
+                    }
+                    document.getElementById("bestaat").innerText = "Planet/star exist but no images.";
+                }       
             });
     }
 
@@ -91,6 +91,7 @@ class Search extends React.Component {
             if (Planet_info.Star_name2.includes(EXO)) {
                 document.getElementById("info_box").style.color = "white";
                 document.getElementById("error").style.color = "black";
+                document.getElementById("error").innerText = "";
                 console.log("Er is informatie van beschikbaar")
                 let index_of_planet = Planet_info.Star_name2.indexOf(EXO);
                 document.getElementById("gravity").innerText = "Name: " + data[index_of_planet]["# name"];
@@ -100,13 +101,13 @@ class Search extends React.Component {
                 // eslint-disable-next-line no-useless-concat
                 document.getElementById("mass").innerText =  "Mass: " + data[index_of_planet].mass * 100 + "*" +  " Earth mass ";
                 document.getElementById("density").innerText = "Discoverd in: " + data[index_of_planet].discovered;
-                this.expPlanet_foto(EXO);
+                this.get_planet_picture(EXO,true);
             } else {
                 console.log("Er is geen informatie van beschikbaar kijk als er fotos van zijn")
                 document.getElementById("info_box").style.color = "black";
                 document.getElementById("error").innerText = "There is not information found about the planet " + EXO + "but we have pictures ";
                 document.getElementById("error").style.color = "white";
-                this.expPlanet_foto(EXO);
+                this.get_planet_picture(EXO,false);
             }
            
         })
@@ -122,12 +123,17 @@ class Search extends React.Component {
                     console.log("Het is een planeet in onze zonnenstelsel");
                     document.getElementById("bestaat").innerText = "Planet exist"
                     document.getElementById("info_box").style.color = "white";
-                    document.getElementById("error").style.color = "black";
+                    //document.getElementById("error").style.color = "black";
+                    document.getElementById("error").innerText = "";
                     this.setState({
                         EXO: data.englishName
                       });
                     this.get_planet_picture(data.englishName)
                     this.get_planet_info(data.englishName)
+                    this.setState({
+                        current_planet: this.state.current_planet = data.englishName
+                    });
+                    //console.log(this.state.current_planet)
                     }
                 }
             ).catch(error => { 
