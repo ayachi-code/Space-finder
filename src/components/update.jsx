@@ -16,6 +16,7 @@ class Update extends React.Component {
             measurementId: "G-E5DBN3R0KC"
         }
         Firebase.initializeApp(this.appConfig)
+
     }
 
 
@@ -23,10 +24,11 @@ class Update extends React.Component {
         console.log("Versie info word opgehaald van de database")
         let databaseRoot = Firebase.database().ref()
         let database_version = Firebase.database().ref('version/');
+        //Set state doe ik niet omdat dit eerder laat dan state en dan krijg ik een undefiend
         database_version.on('value',(data) => {
-            console.log(data)
+            document.getElementById("header").innerText = data.node_.children_.root_.value.value_;
+            document.getElementById("content").innerText = data.node_.children_.root_.left.value.value_;
         });
-        console.log(database_version)
     }
     componentDidMount() {
         window.addEventListener('load',this.retrieve_update)
@@ -39,12 +41,12 @@ class Update extends React.Component {
                     <table>
                         <thead>
                         <tr>
-                            <th className="border">Update 1.0.0</th>
+                             <th className="border text-primary" id="header"></th>
                         </tr>
                         </thead>
                         <tbody>
                             <tr className="text-center ">
-                                <th>
+                                <th className="border text-primary" id="content">
                                   
                                 </th>
                             </tr>
