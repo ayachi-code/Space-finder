@@ -7,6 +7,7 @@ const zoek = new Search();
 class RandomPlanet extends React.Component {
 
     SearchRandomPlanet() {
+        //ALS iemand op random planeet klikt word er een request verzonden na het json object
         console.log("Give me a random planet")
         fetch("https://raw.githubusercontent.com/paulfitz/exoplanets/master/data/exoplanet.json")
         .then((res) => res.json())
@@ -25,13 +26,13 @@ class RandomPlanet extends React.Component {
                         <table>
                             <thead>
                             <tr>
-                                <th className="border">give me a Random Planet</th>
+                                <th className="border text-warning">give me a Random Planet</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="border border-secondary">
                                 <tr className="text-center">
                                     <th>
-                                        <button onClick={this.SearchRandomPlanet}>Search</button>
+                                        <button className="rounded-pill text-white bg-dark" onClick={this.SearchRandomPlanet}>Search</button>
                                     </th>
                                 </tr>
                             </tbody>
