@@ -13,10 +13,13 @@ class Feedback extends React.Component {
     }
 
     report() {
+        //Waneer iemand op report klikt dan krijgt hij ene prompt
         let feedback = prompt("Type your feedback here")
+        //De data word opgeslagen in een object
         let data = {
             feed: feedback
         }
+        //Word verstuurd na firebase bij child Tips
         let feedbackBase = Firebase.database().ref('Tips/');
         feedbackBase.push(data);
     }

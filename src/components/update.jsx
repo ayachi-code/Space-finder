@@ -29,6 +29,7 @@ class Update extends React.Component {
 
     retrieve_update() {
         console.log("Versie info word opgehaald van de database")
+        //Koppelen aan Main root van database
         let databaseRoot = Firebase.database().ref()
         let database_version = Firebase.database().ref('version/');
         //Set state doe ik niet omdat dit eerder laat dan state en dan krijg ik een undefiend
@@ -38,7 +39,7 @@ class Update extends React.Component {
         });
     }
 
-    
+    //Als pagina laad voor info update functue uit
     componentDidMount() {
         window.addEventListener('load',this.retrieve_update)
     }

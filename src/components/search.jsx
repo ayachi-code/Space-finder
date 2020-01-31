@@ -5,12 +5,14 @@ class Search extends React.Component {
     constructor(props) {
         super(props)
         
+        //Speciefce modificaties aan input div
         this.input = {
             margin: "0",
             position: "absolute",
             top: "50%"
         }
 
+        //Speciefce modificaties aan input 
         this.inputType = {
             color: "white",
             background: "rgb(28, 31, 38)",
@@ -33,10 +35,7 @@ class Search extends React.Component {
         this.pageload = this.pageload.bind(this);
     }
 
-    a() {
-        this.search_information("Mars");
-    }
-
+    //Als pagina laat dan word planeet aarde gezocht
     pageload() {
         this.search_information("Earth")
     }
@@ -45,6 +44,7 @@ class Search extends React.Component {
         window.addEventListener('load',this.pageload)
     }
 
+    //Get planet functie parameter planeet naam dat word opgezocht en info als er informatie van planeet is
     get_planet_picture(PlanetName,info) {
         //Fetched na NASA API voor de fotos
         fetch("https://images-api.nasa.gov/search?q=" + PlanetName)
@@ -69,6 +69,7 @@ class Search extends React.Component {
     }
 
 
+    //Zoekt Planeet info van planeet in onze zonnenstelsel
     get_planet_info(PlanetName) {
         document.getElementById("planeet_naam").innerText = PlanetName;
         console.log("Gathering planet")
@@ -88,6 +89,7 @@ class Search extends React.Component {
     }
 
 
+    //Zoekt informatie over exoplaneet
     expPlanet(EXO) {
         document.getElementById("planeet_naam").innerText = EXO;
         //Kijkt als het een exoplaneet is
@@ -106,6 +108,7 @@ class Search extends React.Component {
                 this.setState({
                     exist: ""
                 });
+                //Planeet heeft info en word geshowed op scherm
                 console.log("Er is informatie van beschikbaar")
                 let index_of_planet = Planet_info.Star_name2.indexOf(EXO);
                 document.getElementById("name").innerText = "Star Name: " + data[index_of_planet].star_name
@@ -118,6 +121,7 @@ class Search extends React.Component {
                 document.getElementById("density").innerText = "Discoverd in: " + data[index_of_planet].discovered;
                 this.get_planet_picture(EXO,true);
             } else {
+                //Er is geen informatie tevinden over des betreffende planeet ik laat een bericht achter van dat we niks hebben gevonen
                 console.log("EXO planeet bestaat niet")
                 document.getElementById("bestaat").innerText = EXO + " isn't found";
                 let sliced_var = document.getElementById("name").innerText;
