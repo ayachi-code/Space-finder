@@ -11,11 +11,15 @@ class Feedback extends React.Component {
         }
     }
 
+    report() {
+        console.log("click")
+    }
+
 
     render() {
         return(
             <div style={this.feedbackStyle}>
-                    <button className="rounded-pill text-white bg-dark">Feedback/report a bug</button>
+                    <button onClick={this.report} className="rounded-pill text-white bg-dark">Feedback/report a bug</button>
             </div>
         )
     }
