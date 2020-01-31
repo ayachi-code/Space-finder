@@ -10,6 +10,16 @@ class Search extends React.Component {
             position: "absolute",
             top: "50%"
         }
+
+        this.inputType = {
+            color: "white",
+            background: "rgb(28, 31, 38)",
+            borderColor: "#15418c",
+            borderWidth: "2px",
+            borderRadius: "30px"
+            
+        }
+
         this.state = {
             EXO: "",
             exist: ""
@@ -158,7 +168,7 @@ class Search extends React.Component {
     render() {
         return(
             <div className="w-100 text-center"  style={this.input}>
-                <input className="rounded-pill text-center " type="input" id="planeet_input" placeholder="Explore space" onKeyDown={this.enteredinput}/>
+                <input style={this.inputType} className="text-center " type="input" id="planeet_input" placeholder="Explore space" onKeyDown={this.enteredinput}/>
                          <p onLoad={this.exoplanet_info} id="log" className="text-primary"></p>
                          <p className="text-primary" id="bestaat"></p>
                     </div>
