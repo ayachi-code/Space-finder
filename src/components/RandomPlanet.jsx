@@ -1,7 +1,7 @@
 import React from 'react';
 import Search from './search';
 
-const a = new Search();
+const zoek = new Search();
 
 
 class RandomPlanet extends React.Component {
@@ -13,7 +13,7 @@ class RandomPlanet extends React.Component {
         .then((data) => {
             //Na elke klik word er een random planeet gezocht
             let random_planet = data[Math.floor(Math.random(10) * data.length)].star_name
-            a.search_information(random_planet,false);
+            zoek.search_information(random_planet,false);
             console.log(random_planet)
         })
     }
