@@ -23,11 +23,10 @@ class Update extends React.Component {
         console.log("Versie info word opgehaald van de database")
         let databaseRoot = Firebase.database().ref()
         let database_version = Firebase.database().ref('version/');
-        database_version.set({
-            Header: "1.0.0",
-            Content: "Hey guys"
-        })
-        console.log(databaseRoot)
+        database_version.on('value',(data) => {
+            console.log(data)
+        });
+        console.log(database_version)
     }
     componentDidMount() {
         window.addEventListener('load',this.retrieve_update)
