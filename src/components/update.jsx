@@ -1,5 +1,7 @@
 import React from 'react'
 import Firebase from 'firebase'
+import './css/update.css'
+
 
 class Update extends React.Component {
 
@@ -17,6 +19,11 @@ class Update extends React.Component {
         }
         Firebase.initializeApp(this.appConfig)
 
+        this.update = {
+            width: "200px",
+            color: "orange",
+        }
+
     }
 
 
@@ -30,31 +37,31 @@ class Update extends React.Component {
             document.getElementById("content").innerText = data.node_.children_.root_.left.value.value_;
         });
     }
+
+    
     componentDidMount() {
         window.addEventListener('load',this.retrieve_update)
     }
 
+
     render() {
         return(
             <div>
-            <div className="text-muted float-left border">
-                    <table>
-                        <thead>
+                 <table id="news" className="float-left" style={this.update}>
+                    <thead className="text-center">
                         <tr>
-                             <th className="border text-primary" id="header"></th>
+                             <th className="border" id="header">
+                             </th>
                         </tr>
                         </thead>
                         <tbody>
                             <tr className="text-center ">
-                                <th className="border text-primary" id="content">
-                                  
-                                </th>
+                                <th className="border text-primary" id="content"></th>
                             </tr>
                         </tbody>
 
                     </table>
             </div>
-        </div>
         )
     }
 }

@@ -1,0 +1,6 @@
+#news {
+    float: left;
+    position: absolute;
+    margin-top:10%;
+    border-style: dashed !important;
+}

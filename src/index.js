@@ -14,11 +14,11 @@ class App extends React.Component {
     render() {
         return(
             <div>
-            <Apod/>
-            <Search/>
-            <Update/>
             <Display/>
             <RandomPlanet/>
+            <Update/>
+            <Apod/>
+            <Search/>
             </div>
         )
     }
