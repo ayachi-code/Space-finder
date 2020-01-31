@@ -4,18 +4,18 @@ import React from 'react'
 class Feedback extends React.Component {
     constructor() {
         super()
-        this.button = {
-          
+        this.feedbackStyle = {
+            position: "fixed",
+            bottom: "0",
+            right: "0"
         }
     }
 
 
     render() {
         return(
-            <div>
-                <div style={this.button}>
-                        <button>Feedback/report a bug</button>
-                </div>
+            <div style={this.feedbackStyle}>
+                    <button className="rounded-pill text-white bg-dark">Feedback/report a bug</button>
             </div>
         )
     }
